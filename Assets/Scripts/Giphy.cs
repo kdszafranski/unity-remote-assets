@@ -2,21 +2,21 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Networking;
+using Defective.JSON;
+using TMPro;
 
 public class Giphy : MonoBehaviour
 {
     [SerializeField] GameObject panel;
+    [SerializeField] TextMeshProUGUI titleText;
+    [SerializeField] TextMeshProUGUI ratingText;
     [SerializeField] GameObject gifCardUIPrefab;
+
     [SerializeField] string giphyAPIKey;
     [SerializeField] string giphyAPIBaseUrl;
 
     List<GameObject> gifs;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     public void loadGifs() 
     {
@@ -28,7 +28,7 @@ public class Giphy : MonoBehaviour
     IEnumerator giphyGetRandom()
     {
         // https://api.giphy.com/v1/gifs/random?api_key=Si5ViEEb7tiGsg74eWmCUJYRsvipGFOo&tag=&rating=g
-        string responseText = "";
+
         string endpoint = giphyAPIBaseUrl + "random?";
         endpoint += "api_key=" + giphyAPIKey;
 
@@ -41,18 +41,28 @@ public class Giphy : MonoBehaviour
         else {
             // Show results as text
             displayImages(www.downloadHandler.text);
-            // Debug.Log(responseText);
- 
-            // Or retrieve results as binary data
-            // byte[] results = www.downloadHandler.data;
         }
     }
 
-    void displayImages(string text) 
+    void displayImages(string jsonText) 
     {
-        string res = JsonUtility.FromJson<string>(text);
-        Debug.Log("display images: " + res);
+        Debug.Log(jsonText);
 
+        // convert, pull out field values
+        JSONObject jsonObject = new JSONObject(jsonText);
+        var data = jsonObject["data"];
+        var title = data["title"];
+        var rating = data["rating"];
+
+        // update UI
+        titleText.text = title.stringValue;
+        ratingText.text = rating.stringValue;
+
+
+
+        // create card
+        // set parent to panel
+        // populate fields
     }
 
   
