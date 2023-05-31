@@ -15,25 +15,24 @@ public class Giphy : MonoBehaviour
     [SerializeField] GameObject gifCardUIPrefab;
 
     [SerializeField] string giphyAPIKey;
-    [SerializeField] string giphyAPIBaseUrl;
+    [SerializeField] string assetBaseUrl;
 
     List<GameObject> gifs;
     // string imageUrl;
 
-
-    public void loadGifs() 
+    // called on UI button click
+    public void loadAssets() 
     {
-        Debug.Log("getting gifs");
+        Debug.Log("getting assets");
         
-        StartCoroutine(giphyGetRandom());
+        StartCoroutine(getAssetsFromUrl());
     }   
 
-    IEnumerator giphyGetRandom()
+    IEnumerator getAssetsFromUrl()
     {
-        // https://api.giphy.com/v1/gifs/random?api_key=Si5ViEEb7tiGsg74eWmCUJYRsvipGFOo&tag=&rating=g
-
-        string endpoint = giphyAPIBaseUrl + "random?";
-        endpoint += "api_key=" + giphyAPIKey;
+       
+        string endpoint = assetBaseUrl;
+        //endpoint += "api_key=" + giphyAPIKey;
 
         UnityWebRequest www = UnityWebRequest.Get(endpoint);
         yield return www.SendWebRequest();
@@ -51,21 +50,16 @@ public class Giphy : MonoBehaviour
     {
         Debug.Log(jsonText);
 
-        // convert, pull out field values
+        //convert, pull out field values
         JSONObject jsonObject = new JSONObject(jsonText);
-        var data = jsonObject["data"];
-        var title = data["title"];
-        var rating = data["rating"];
-        var images = data["images"];
-        var image = images["fixed_width_still"];
-        var imageUrl = image["url"].stringValue;
+        var imagePath = jsonObject["imagePath"];
+        var images = jsonObject["images"];
 
         // update UI
-        titleText.text = title.stringValue;
-        ratingText.text = imageUrl;
+        titleText.text = images[1].GetField("description").stringValue;
 
-        // get actual image file
-        StartCoroutine(GetImageFromUrl(imageUrl));
+        //// get actual image file
+        //StartCoroutine(GetImageFromUrl(imageUrl));
 
     }
 

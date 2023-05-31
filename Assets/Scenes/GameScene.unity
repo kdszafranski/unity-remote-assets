@@ -171,9 +171,9 @@ MonoBehaviour:
   uiImage: {fileID: 3205789886589698776}
   titleText: {fileID: 6167394505021327965}
   ratingText: {fileID: 426294508}
-  gifCardUIPrefab: {fileID: 0}
+  gifCardUIPrefab: {fileID: 8364166573373947866, guid: c463e949ba153414cb4839d5c52e5a50, type: 3}
   giphyAPIKey: Si5ViEEb7tiGsg74eWmCUJYRsvipGFOo
-  giphyAPIBaseUrl: https://api.giphy.com/v1/gifs/
+  assetBaseUrl: http://localhost:5000/assets
 --- !u!1 &258644101 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8364166573373947866, guid: c463e949ba153414cb4839d5c52e5a50, type: 3}
@@ -498,8 +498,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 135500734}
-        m_TargetAssemblyTypeName: giphy, Assembly-CSharp
-        m_MethodName: loadGifs
+        m_TargetAssemblyTypeName: Giphy, Assembly-CSharp
+        m_MethodName: loadAssets
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
