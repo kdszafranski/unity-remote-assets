@@ -8,17 +8,12 @@ using TMPro;
 
 public class Giphy : MonoBehaviour
 {
-    [SerializeField] GameObject panel;
-    [SerializeField] Image uiImage;
-    [SerializeField] TextMeshProUGUI titleText;
-    [SerializeField] TextMeshProUGUI ratingText;
-    [SerializeField] GameObject gifCardUIPrefab;
+    [SerializeField] GameObject imageLayoutGroup;
+    [SerializeField] GameObject imageCardPrefab;
 
-    [SerializeField] string giphyAPIKey;
+    [SerializeField] string apiKey;
     [SerializeField] string assetBaseUrl;
 
-    List<GameObject> gifs;
-    // string imageUrl;
 
     // called on UI button click
     public void loadAssets() 
@@ -55,13 +50,13 @@ public class Giphy : MonoBehaviour
         var imagePath = jsonObject["imagePath"];
         var images = jsonObject["images"];
 
-        // update UI
-        titleText.text = images[1].GetField("description").stringValue;
 
-        // get actual image file
+        // get actual image files
         string imageUrl = "";
         foreach (JSONObject element in images.list)
         {
+
+            //titleText.text = images[1].GetField("description").stringValue;
             imageUrl = imagePath.stringValue + element.GetField("path").stringValue;
             StartCoroutine(GetImageFromUrl(imageUrl));
         }
@@ -82,10 +77,18 @@ public class Giphy : MonoBehaviour
         }
         else {
             // Show results as text
-            Debug.Log("here");
+            // update UI
+            // instantiate card
             Texture2D imageTex = ((DownloadHandlerTexture)www.downloadHandler).texture;
-            uiImage.sprite = Sprite.Create(imageTex, new Rect(0, 0, imageTex.width, imageTex.height), new Vector2(0.5f, 0.5f));
-            uiImage.preserveAspect = true;
+            GameObject card = GameObject.Instantiate<GameObject>(imageCardPrefab, imageLayoutGroup.transform);
+            
+            // Image is the first child in prefab GO
+            Image image = card.transform.GetChild(0).GetComponent<Image>();
+            if(image != null)
+            {
+                image.sprite = Sprite.Create(imageTex, new Rect(0, 0, imageTex.width, imageTex.height), new Vector2(0.5f, 0.5f));
+                image.preserveAspect = true;
+            }
         }
     }
 
