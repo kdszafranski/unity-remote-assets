@@ -27,7 +27,7 @@ public class Giphy : MonoBehaviour
     {
        
         string endpoint = assetBaseUrl;
-        //endpoint += "api_key=" + giphyAPIKey;
+        //endpoint += "?api_key=";
 
         UnityWebRequest www = UnityWebRequest.Get(endpoint);
         yield return www.SendWebRequest();
