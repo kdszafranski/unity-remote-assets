@@ -58,23 +58,21 @@ public class Giphy : MonoBehaviour
         // update UI
         titleText.text = images[1].GetField("description").stringValue;
 
-        //// get actual image file
-        //StartCoroutine(GetImageFromUrl(imageUrl));
+        // get actual image file
+        string imageUrl = "";
+        foreach (JSONObject element in images.list)
+        {
+            imageUrl = imagePath.stringValue + element.GetField("path").stringValue;
+            StartCoroutine(GetImageFromUrl(imageUrl));
+        }
 
     }
 
     IEnumerator GetImageFromUrl(string url)
     {
-        // url = url.Replace("media3", "i");
-        url = url.Replace("\\", "");
-        url = url.Replace("media1", "i");
-        url = url.Replace("media2", "i");
-        url = url.Replace("media3", "i");
-        url = url.Replace("media4", "i");
         Debug.Log("getting image:");
         Debug.Log(url);
         Debug.Log("------");
-        //url = "http://www.kdszafranski.com/img/game-images/add-logo.png";
 
         UnityWebRequest www = UnityWebRequestTexture.GetTexture(url);
         yield return www.SendWebRequest();
@@ -88,7 +86,6 @@ public class Giphy : MonoBehaviour
             Texture2D imageTex = ((DownloadHandlerTexture)www.downloadHandler).texture;
             uiImage.sprite = Sprite.Create(imageTex, new Rect(0, 0, imageTex.width, imageTex.height), new Vector2(0.5f, 0.5f));
             uiImage.preserveAspect = true;
-            //uiImage.rectTransform.
         }
     }
 
