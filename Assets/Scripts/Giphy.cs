@@ -2,12 +2,14 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 using Defective.JSON;
 using TMPro;
 
 public class Giphy : MonoBehaviour
 {
     [SerializeField] GameObject panel;
+    [SerializeField] Image uiImage;
     [SerializeField] TextMeshProUGUI titleText;
     [SerializeField] TextMeshProUGUI ratingText;
     [SerializeField] GameObject gifCardUIPrefab;
@@ -16,6 +18,7 @@ public class Giphy : MonoBehaviour
     [SerializeField] string giphyAPIBaseUrl;
 
     List<GameObject> gifs;
+    // string imageUrl;
 
 
     public void loadGifs() 
@@ -53,16 +56,39 @@ public class Giphy : MonoBehaviour
         var data = jsonObject["data"];
         var title = data["title"];
         var rating = data["rating"];
+        var images = data["images"];
+        var image = images["fixed_width_still"];
+        var imageUrl = image["url"].stringValue;
 
         // update UI
         titleText.text = title.stringValue;
-        ratingText.text = rating.stringValue;
+        ratingText.text = imageUrl;
 
+        // get actual image file
+        StartCoroutine(GetImage(imageUrl));
 
+    }
 
-        // create card
-        // set parent to panel
-        // populate fields
+    IEnumerator GetImage(string url)
+    {
+        // url = url.Replace("media3", "i");
+        url = url.Replace("\\", "");
+        Debug.Log("getting image:");
+        Debug.Log(url);
+        Debug.Log("------");
+
+        UnityWebRequest www = UnityWebRequestTexture.GetTexture("http://www.kdszafranski.com/img/game-images/add-logo.png");
+        yield return www.SendWebRequest();
+ 
+        if (www.result != UnityWebRequest.Result.Success) {
+            Debug.Log("ERROR: " + www.downloadHandler.error);
+        }
+        else {
+            // Show results as text
+            Debug.Log("here");
+            Texture2D myTexture = ((DownloadHandlerTexture)www.downloadHandler).texture;
+            uiImage.sprite = Sprite.Create(myTexture, new Rect(0, 0, 100, 100), new Vector2(0,0));
+        }
     }
 
   
