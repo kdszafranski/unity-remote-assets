@@ -65,18 +65,22 @@ public class Giphy : MonoBehaviour
         ratingText.text = imageUrl;
 
         // get actual image file
-        StartCoroutine(GetImage(imageUrl));
+        StartCoroutine(GetImageFromUrl(imageUrl));
 
     }
 
-    IEnumerator GetImage(string url)
+    IEnumerator GetImageFromUrl(string url)
     {
         // url = url.Replace("media3", "i");
         url = url.Replace("\\", "");
+        url = url.Replace("media1", "i");
+        url = url.Replace("media2", "i");
+        url = url.Replace("media3", "i");
+        url = url.Replace("media4", "i");
         Debug.Log("getting image:");
         Debug.Log(url);
         Debug.Log("------");
-        url = "http://www.kdszafranski.com/img/game-images/add-logo.png";
+        //url = "http://www.kdszafranski.com/img/game-images/add-logo.png";
 
         UnityWebRequest www = UnityWebRequestTexture.GetTexture(url);
         yield return www.SendWebRequest();

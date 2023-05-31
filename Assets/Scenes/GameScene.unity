@@ -171,14 +171,34 @@ MonoBehaviour:
   uiImage: {fileID: 3205789886589698776}
   titleText: {fileID: 6167394505021327965}
   ratingText: {fileID: 426294508}
-  gifCardUIPrefab: {fileID: 8364166573373947866, guid: c463e949ba153414cb4839d5c52e5a50, type: 3}
+  gifCardUIPrefab: {fileID: 0}
   giphyAPIKey: Si5ViEEb7tiGsg74eWmCUJYRsvipGFOo
   giphyAPIBaseUrl: https://api.giphy.com/v1/gifs/
+--- !u!1 &258644101 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8364166573373947866, guid: c463e949ba153414cb4839d5c52e5a50, type: 3}
+  m_PrefabInstance: {fileID: 8364166573359687519}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &258644102 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8364166573373947865, guid: c463e949ba153414cb4839d5c52e5a50, type: 3}
   m_PrefabInstance: {fileID: 8364166573359687519}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &258644105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 258644101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0.49056602, g: 0.49056602, b: 0.49056602, a: 1}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!1 &299300443
 GameObject:
   m_ObjectHideFlags: 0
@@ -913,6 +933,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 654532529}
     m_Modifications:
+    - target: {fileID: 2415479224760724738, guid: c463e949ba153414cb4839d5c52e5a50, type: 3}
+      propertyPath: m_fontSize
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2415479224760724738, guid: c463e949ba153414cb4839d5c52e5a50, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8364166573373947864, guid: c463e949ba153414cb4839d5c52e5a50, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8364166573373947864, guid: c463e949ba153414cb4839d5c52e5a50, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8364166573373947864, guid: c463e949ba153414cb4839d5c52e5a50, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8364166573373947864, guid: c463e949ba153414cb4839d5c52e5a50, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8364166573373947864, guid: c463e949ba153414cb4839d5c52e5a50, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8364166573373947865, guid: c463e949ba153414cb4839d5c52e5a50, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1000,6 +1048,18 @@ PrefabInstance:
     - target: {fileID: 8364166573373947866, guid: c463e949ba153414cb4839d5c52e5a50, type: 3}
       propertyPath: m_Name
       value: ImageCard
+      objectReference: {fileID: 0}
+    - target: {fileID: 8364166573742906288, guid: c463e949ba153414cb4839d5c52e5a50, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 59.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8364166573742906288, guid: c463e949ba153414cb4839d5c52e5a50, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 29.625
+      objectReference: {fileID: 0}
+    - target: {fileID: 8364166573742906291, guid: c463e949ba153414cb4839d5c52e5a50, type: 3}
+      propertyPath: m_overflowMode
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c463e949ba153414cb4839d5c52e5a50, type: 3}
