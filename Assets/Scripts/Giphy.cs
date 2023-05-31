@@ -76,8 +76,9 @@ public class Giphy : MonoBehaviour
         Debug.Log("getting image:");
         Debug.Log(url);
         Debug.Log("------");
+        url = "http://www.kdszafranski.com/img/game-images/add-logo.png";
 
-        UnityWebRequest www = UnityWebRequestTexture.GetTexture("http://www.kdszafranski.com/img/game-images/add-logo.png");
+        UnityWebRequest www = UnityWebRequestTexture.GetTexture(url);
         yield return www.SendWebRequest();
  
         if (www.result != UnityWebRequest.Result.Success) {
@@ -86,8 +87,10 @@ public class Giphy : MonoBehaviour
         else {
             // Show results as text
             Debug.Log("here");
-            Texture2D myTexture = ((DownloadHandlerTexture)www.downloadHandler).texture;
-            uiImage.sprite = Sprite.Create(myTexture, new Rect(0, 0, 100, 100), new Vector2(0,0));
+            Texture2D imageTex = ((DownloadHandlerTexture)www.downloadHandler).texture;
+            uiImage.sprite = Sprite.Create(imageTex, new Rect(0, 0, imageTex.width, imageTex.height), new Vector2(0.5f, 0.5f));
+            uiImage.preserveAspect = true;
+            //uiImage.rectTransform.
         }
     }
 
