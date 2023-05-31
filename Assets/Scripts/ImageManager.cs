@@ -1,12 +1,11 @@
 using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 using Defective.JSON;
 using TMPro;
 
-public class Giphy : MonoBehaviour
+public class ImageManager : MonoBehaviour
 {
     [SerializeField] GameObject imageLayoutGroup;
     [SerializeField] GameObject imageCardPrefab;

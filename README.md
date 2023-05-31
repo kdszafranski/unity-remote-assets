@@ -1,13 +1,7 @@
-## Unity 3D Core Starter Repo
+## Unity Remote Assets
 
-Scene renamed to GameScene.
+Demonstrates retrieving image assets from a web server and displaying them.
 
-Starter Assets folders:
+The Unity app gets images from the host, creates textures, and shows them on the UI as Images/Sprites. It uses a `LayoutGroup` to arrange them evenly.
 
-- Scripts
-- Prefabs
-- Materials
-- Models
-- Sound
-
-Starter Materials.
+![screenshot](screenshot.png)
