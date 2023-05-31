@@ -50,32 +50,28 @@ public class Giphy : MonoBehaviour
         var imagePath = jsonObject["imagePath"];
         var images = jsonObject["images"];
 
-
         // get actual image files
-        string imageUrl = "";
         foreach (JSONObject element in images.list)
         {
-
-            //titleText.text = images[1].GetField("description").stringValue;
-            imageUrl = imagePath.stringValue + element.GetField("path").stringValue;
-            StartCoroutine(GetImageFromUrl(imageUrl));
+            StartCoroutine(GetImageFromUrl(imagePath.stringValue, element));
         }
 
     }
 
-    IEnumerator GetImageFromUrl(string url)
+    IEnumerator GetImageFromUrl(string imagePath, JSONObject jsonObject)
     {
+        string imageUrl = imagePath + jsonObject.GetField("path").stringValue;
         Debug.Log("getting image:");
-        Debug.Log(url);
+        Debug.Log(imageUrl);
         Debug.Log("------");
 
-        UnityWebRequest www = UnityWebRequestTexture.GetTexture(url);
+        // get image and create card to display it
+        UnityWebRequest www = UnityWebRequestTexture.GetTexture(imageUrl);
         yield return www.SendWebRequest();
  
         if (www.result != UnityWebRequest.Result.Success) {
             Debug.Log("ERROR: " + www.downloadHandler.error);
-        }
-        else {
+        } else {
             // Show results as text
             // update UI
             // instantiate card
@@ -84,10 +80,13 @@ public class Giphy : MonoBehaviour
             
             // Image is the first child in prefab GO
             Image image = card.transform.GetChild(0).GetComponent<Image>();
-            if(image != null)
-            {
+            TextMeshProUGUI title = card.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
+            if (image != null) {
+                // put texture into UI sprite
                 image.sprite = Sprite.Create(imageTex, new Rect(0, 0, imageTex.width, imageTex.height), new Vector2(0.5f, 0.5f));
                 image.preserveAspect = true;
+                // update card title
+                title.text = jsonObject.GetField("description").stringValue;
             }
         }
     }
