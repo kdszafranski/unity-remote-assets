@@ -15,14 +15,14 @@ public class ImageManager : MonoBehaviour
 
 
     // called on UI button click
-    public void loadAssets() 
+    public void LoadAssets() 
     {
         Debug.Log("getting assets");
         
-        StartCoroutine(getAssetsFromUrl());
+        StartCoroutine(GetAssetsFromUrl());
     }   
 
-    IEnumerator getAssetsFromUrl()
+    IEnumerator GetAssetsFromUrl()
     {
        
         string endpoint = assetBaseUrl;
@@ -36,11 +36,11 @@ public class ImageManager : MonoBehaviour
         }
         else {
             // Show results as text
-            displayImages(www.downloadHandler.text);
+            DisplayImages(www.downloadHandler.text);
         }
     }
 
-    void displayImages(string jsonText) 
+    void DisplayImages(string jsonText) 
     {
         Debug.Log(jsonText);
 

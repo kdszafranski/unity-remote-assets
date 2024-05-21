@@ -169,7 +169,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   imageLayoutGroup: {fileID: 731957715}
   imageCardPrefab: {fileID: 8364166573373947866, guid: c463e949ba153414cb4839d5c52e5a50, type: 3}
-  apiKey: 
+  apiKey: 1723158939df8bda3b729c5976295188
   assetBaseUrl: http://localhost:5000/assets
 --- !u!1 &299300443
 GameObject:
@@ -459,8 +459,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 135500734}
-        m_TargetAssemblyTypeName: Giphy, Assembly-CSharp
-        m_MethodName: loadAssets
+        m_TargetAssemblyTypeName: ImageManager, Assembly-CSharp
+        m_MethodName: LoadAssets
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
